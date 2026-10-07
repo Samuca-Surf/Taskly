@@ -1,0 +1,68 @@
+src/main/java/com/exemplo/pedidos
+│
+├── PedidoApplication.java
+│
+├── domain/
+│   ├── model/
+│   │   ├── Pedido.java
+│   │   ├── ItemPedido.java
+│   │   └── StatusPedido.java
+│   │
+│   ├── repository/
+│   │   └── PedidoRepository.java
+│   │
+│   └── service/
+│       └── PedidoDomainService.java
+│
+├── application/
+│   ├── usecase/
+│   │   ├── CriarPedidoUseCase.java
+│   │   └── BuscarPedidoUseCase.java
+│   │
+│   └── dto/
+│       ├── CriarPedidoRequest.java
+│       └── PedidoResponse.java
+│
+├── infrastructure/
+│   ├── persistence/
+│   │   ├── PedidoEntity.java
+│   │   └── JpaPedidoRepository.java
+│   │
+│   └── config/
+│       └── BeanConfig.java
+│
+└── interfaces/
+    └── controller/
+        └── PedidoController.java
+
+
+
+
+
+com.empresa.pagamento/
+│
+├── domain/                         <-- O Coração do Sistema
+│   ├── pedido/                     <-- Agregado de Pedidos (Contexto delimitado ou submódulo)
+│   │   ├── Pedido.java             <-- Entidade (Aggregate Root)
+│   │   ├── ItemPedido.java         <-- Entidade interna
+│   │   ├── StatusPedido.java       <-- Objeto de Valor (Value Object)
+│   │   ├── PedidoRepository.java   <-- Interface do Repositório (Contrato)
+│   │   └── PedidoFactory.java      <-- Fábrica para criar pedidos complexos
+│   │
+│   └── cliente/                    <-- Outro Agregado
+│       └── Cliente.java
+│
+├── application/                    <-- Camada de Aplicação (Fluxo de execução)
+│   └── PedidoApplicationService.java <-- Orquestra a lógica, chama o repositório e o domínio
+│
+├── interfaces/                     <-- Camada de Interface (Exposição)
+│   ├── rest/                       <-- Controladores HTTP / REST
+│   │   └── PedidoController.java
+│   └── dto/                        <-- Objetos de transferência de dados da API
+│       └── PedidoDTO.java
+│
+└── infrastructure/                 <-- Detalhes técnicos e persistência
+    ├── persistence/                
+    │   └── PedidoRepositoryImpl.java <-- Implementação real do banco de dados
+    └── messaging/
+        └── KafkaEventPublisher.java  <-- Envio de eventos de infraestrutura
