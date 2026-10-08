@@ -21,9 +21,10 @@ public class Projeto {
 
     private String descricao;
 
+    @Column(nullable = false)
     private LocalDateTime criado_em;
 
-    private LocalDateTime atualizado_em;
+    private LocalDateTime atualizado_em = null;
 
     public Projeto(){}
 }

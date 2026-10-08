@@ -1,4 +1,10 @@
 package com.samuel.Taskly.application.dto;
 
-public class CategoriaDTO {
+import com.samuel.Taskly.domain.entity.Projeto;
+
+public record CategoriaDTO(
+        Long idProjeto,
+        String nome,
+        String hexColor
+) {
 }
