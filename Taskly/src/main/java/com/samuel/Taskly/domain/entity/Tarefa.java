@@ -28,9 +28,9 @@ public class Tarefa {
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "sprint_id")
-    private Sprint sprint;
+    private Sprint sprint;*/
 
     private String titulo;
     private String descricao;
