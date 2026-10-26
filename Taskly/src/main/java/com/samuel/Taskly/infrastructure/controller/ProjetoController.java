@@ -4,14 +4,12 @@ import com.samuel.Taskly.application.dto.ProjetoDTO;
 import com.samuel.Taskly.application.service.ProjetoService;
 import com.samuel.Taskly.domain.entity.Projeto;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.beans.BeanProperty;
 import java.util.List;
 
 @RestController

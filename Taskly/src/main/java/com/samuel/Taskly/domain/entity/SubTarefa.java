@@ -22,6 +22,6 @@ public class SubTarefa {
     private Boolean completado = false;
     private Integer posicao;
 
-    private LocalDateTime criado_em;
-    private LocalDateTime atualizado_em;
+    private LocalDateTime criadoEm;
+    private LocalDateTime atualizadoEm;
 }

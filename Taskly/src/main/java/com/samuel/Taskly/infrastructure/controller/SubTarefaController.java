@@ -2,13 +2,11 @@ package com.samuel.Taskly.infrastructure.controller;
 
 import com.samuel.Taskly.application.dto.SubTarefaDTO;
 import com.samuel.Taskly.application.service.SubTarefaService;
-import com.samuel.Taskly.application.usecase.ISubTarefaUseCase;
 import com.samuel.Taskly.domain.entity.SubTarefa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

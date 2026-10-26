@@ -38,6 +38,8 @@ public class ProjetoService implements IProjetoUseCase{
     @Override
     public Projeto criarProjeto(ProjetoDTO dto) {
         Projeto projeto = toModel(dto);
+        projeto.setNome(dto.nome());
+        projeto.setDescricao(dto.descricao());
         projeto.setCriado_em(LocalDateTime.now());
         repository.save(projeto);
         return projeto;

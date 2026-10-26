@@ -38,7 +38,7 @@ public class SubTarefaService implements ISubTarefaUseCase {
         subTarefa.setTarefa(service.buscarTarefaPorId(dto.id_tarefa()));
         subTarefa.setPosicao(dto.posicao());
         subTarefa.setCompletado(dto.completado());
-        subTarefa.setCriado_em(LocalDateTime.now());
+        subTarefa.setCriadoEm(LocalDateTime.now());
         repository.save(subTarefa);
         return subTarefa;
     }
@@ -50,7 +50,7 @@ public class SubTarefaService implements ISubTarefaUseCase {
         subTarefa.setTitulo(dto.titulo());
         subTarefa.setCompletado(dto.completado());
         subTarefa.setPosicao(dto.posicao());
-        subTarefa.setAtualizado_em(LocalDateTime.now());
+        subTarefa.setAtualizadoEm(LocalDateTime.now());
         repository.save(subTarefa);
         return subTarefa;
     }
