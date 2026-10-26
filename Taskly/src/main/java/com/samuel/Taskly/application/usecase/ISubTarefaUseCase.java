@@ -6,7 +6,7 @@ import com.samuel.Taskly.domain.entity.SubTarefa;
 import java.util.List;
 
 public interface ISubTarefaUseCase {
-    List<SubTarefa> listarSubtarefas();
+    List<SubTarefa> listarSubtarefas(Long idTarefa);
     SubTarefa buscarPorId(Long id);
     SubTarefa criarSubTarefa(SubTarefaDTO dto);
     SubTarefa atualizarSubTarefa(Long id, SubTarefaDTO dto);
