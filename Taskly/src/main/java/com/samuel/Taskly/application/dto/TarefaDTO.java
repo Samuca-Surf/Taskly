@@ -17,7 +17,7 @@ public record TarefaDTO(
         String titulo,
         @NotEmpty(message = "Coloque a descrição")
         String descricao,
-        @NotEmpty(message = "Coloque o nivel de prioridade da tarefa")
+        @NotNull(message = "Coloque o nivel de prioridade da tarefa")
         Prioridade prioridade,
         LocalDate data_final,
         @NotNull(message = "Atribua uma posição da tarefa")

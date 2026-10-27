@@ -2,10 +2,6 @@
 
 uma sistema mais simples, que irá rodar no próprio computador, um MVP, que inclua os projetos, as tarefas, as subtarefas, as categorias das tarefas, e onde essa tarefa pode ficar em Backlog, A fazer, Em andamento, Em análise, Concluído etc. tbm dará para fazer o cadastro, edição e exclusão das mesmas
 
-
-
-
-
 projects
 
 ├── id
@@ -14,19 +10,15 @@ projects
 
 ├── description
 
-├── created\_at
+├── created_at
 
-└── updated\_at
-
-
-
-
+└── updated_at
 
 statuses
 
 ├── id
 
-├── project\_id
+├── project_id
 
 ├── name
 
@@ -34,41 +26,37 @@ statuses
 
 ├── position
 
-├── created\_at
+├── created_at
 
-└── updated\_at
+└── updated_at
 
-
-
-
+o que vai ter o Backlog, A Fazer, Em andamento, Em análise, e Concluído vai ser o status
 
 categories
 
 ├── id
 
-├── project\_id
+├── project_id
 
 ├── name
 
 ├── color
 
-├── created\_at
+├── created_at
 
-└── updated\_at
+└── updated_at
 
-
-
-
+categoria será para onde será cadastrado, Front-end, QA, Back-end, Banco, etc...
 
 tasks
 
 ├── id
 
-├── project\_id
+├── project_id
 
-├── status\_id
+├── status_id
 
-├── category\_id
+├── category_id
 
 ├── title
 
@@ -76,23 +64,19 @@ tasks
 
 ├── priority
 
-├── due\_date
+├── due_date
 
 ├── position
 
-├── created\_at
+├── created_at
 
-└── updated\_at
-
-
-
-
+└── updated_at
 
 subtasks
 
 ├── id
 
-├── task\_id
+├── task_id
 
 ├── title
 
@@ -100,9 +84,6 @@ subtasks
 
 ├── position
 
-├── created\_at
+├── created_at
 
-└── updated\_at
-
-
-
+└── updated_at
