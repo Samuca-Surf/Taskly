@@ -19,14 +19,13 @@ export default function TarefaCard({ tarefa, onDragStart }: Props) {
       onDragStart={() => onDragStart(tarefa.id)}
       className="cursor-grab rounded-xl border border-white/10 bg-[#1a1636] p-3 shadow-md shadow-black/20 transition hover:border-violet-500/50 active:cursor-grabbing"
     >
-      <Link
-        to={`/projeto/${projeto.id}/tarefa/${tarefa.id}`}
-        className="font-medium text-slate-100 hover:text-violet-300"
-      >
+      <h4 className="font-medium text-slate-100 hover:text-violet-300">
         {tarefa.titulo}
-      </Link>
+      </h4>
       {tarefa.descricao && (
-        <p className="mt-1 line-clamp-2 text-xs text-slate-400">{tarefa.descricao}</p>
+        <p className="mt-1 line-clamp-2 text-xs text-slate-400">
+          {tarefa.descricao}
+        </p>
       )}
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
         {tarefa.prioridade && (

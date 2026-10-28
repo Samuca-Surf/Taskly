@@ -9,19 +9,29 @@ import { useProjetoAtual } from "../hooks/useProjetoAtual";
 import { useProjetoData } from "../hooks/useProjetoData";
 import { tarefaService } from "../services/tarefaService";
 import { tarefaToDTO } from "../utils/tarefa";
+import TarefaModal from "../components/TarefaModal";
 
 export default function Quadro() {
   const projeto = useProjetoAtual();
-  const { tarefas, statusList, categorias, loading, error, reload } = useProjetoData(projeto.id);
+  const { tarefas, statusList, categorias, loading, error, reload } =
+    useProjetoData(projeto.id);
 
   const [busca, setBusca] = useState("");
-  const [novaNoStatus, setNovaNoStatus] = useState<number | null | undefined>(undefined);
+  const [novaNoStatus, setNovaNoStatus] = useState<number | null | undefined>(
+    undefined,
+  );
   const [dragId, setDragId] = useState<number | null>(null);
   const [colunaHover, setColunaHover] = useState<number | null>(null);
 
+  const [abertaId, setAbertaId] = useState<number | null>(null);
+  const tarefaAberta = tarefas.find((t) => t.id === abertaId);
+
   const filtradas = useMemo(
-    () => tarefas.filter((t) => t.titulo.toLowerCase().includes(busca.toLowerCase())),
-    [tarefas, busca]
+    () =>
+      tarefas.filter((t) =>
+        t.titulo.toLowerCase().includes(busca.toLowerCase()),
+      ),
+    [tarefas, busca],
   );
 
   const podeCriar = statusList.length > 0 && categorias.length > 0;
@@ -35,7 +45,7 @@ export default function Quadro() {
     try {
       await tarefaService.update(
         tarefa.id,
-        tarefaToDTO(tarefa, projeto.id, { id_status: statusId, posicao })
+        tarefaToDTO(tarefa, projeto.id, { id_status: statusId, posicao }),
       );
       reload();
     } catch (e) {
@@ -67,11 +77,17 @@ export default function Quadro() {
       {!loading && !podeCriar && (
         <div className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
           Para criar tarefas, este projeto precisa de pelo menos um{" "}
-          <Link to={`/projeto/${projeto.id}/status`} className="font-medium underline">
+          <Link
+            to={`/projeto/${projeto.id}/status`}
+            className="font-medium underline"
+          >
             status
           </Link>{" "}
           e uma{" "}
-          <Link to={`/projeto/${projeto.id}/categorias`} className="font-medium underline">
+          <Link
+            to={`/projeto/${projeto.id}/categorias`}
+            className="font-medium underline"
+          >
             categoria
           </Link>
           .
@@ -119,7 +135,9 @@ export default function Quadro() {
               </header>
               <div className="flex flex-col gap-2">
                 {doStatus.map((t) => (
-                  <TarefaCard key={t.id} tarefa={t} onDragStart={setDragId} />
+                  <div key={t.id} onClick={() => setAbertaId(t.id)}>
+                    <TarefaCard tarefa={t} onDragStart={setDragId} />
+                  </div>
                 ))}
               </div>
             </section>
@@ -139,6 +157,17 @@ export default function Quadro() {
             setNovaNoStatus(undefined);
             reload();
           }}
+        />
+      )}
+      {tarefaAberta && (
+        <TarefaModal
+          tarefa={tarefaAberta}
+          projeto={projeto}
+          statusList={statusList}
+          categorias={categorias}
+          tarefas={tarefas}
+          onClose={() => setAbertaId(null)}
+          onChanged={reload}
         />
       )}
     </div>

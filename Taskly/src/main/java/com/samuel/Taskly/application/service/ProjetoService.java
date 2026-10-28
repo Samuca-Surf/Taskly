@@ -4,7 +4,8 @@ import com.samuel.Taskly.application.dto.ProjetoDTO;
 import com.samuel.Taskly.application.usecase.IProjetoUseCase;
 import com.samuel.Taskly.domain.entity.Projeto;
 import com.samuel.Taskly.domain.exception.RecursoNaoEncontrado;
-import com.samuel.Taskly.infrastructure.repository.ProjetoRepository;
+import com.samuel.Taskly.infrastructure.repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,9 +14,17 @@ import java.util.List;
 @Service
 public class ProjetoService implements IProjetoUseCase{
     private final ProjetoRepository repository;
+    private final SubTarefaRepository subTarefaRepository;
+    private final TarefaRepository tarefaRepository;
+    private final CategoriaRepository categoriaRepository;
+    private final StatusRepository statusRepository;
 
-    public ProjetoService(ProjetoRepository repository) {
+    public ProjetoService(ProjetoRepository repository, SubTarefaRepository subTarefaRepository, TarefaRepository tarefaRepository, CategoriaRepository categoriaRepository, StatusRepository statusRepository) {
         this.repository = repository;
+        this.subTarefaRepository = subTarefaRepository;
+        this.tarefaRepository = tarefaRepository;
+        this.categoriaRepository = categoriaRepository;
+        this.statusRepository = statusRepository;
     }
 
     private Projeto toModel(ProjetoDTO dto){
@@ -56,8 +65,15 @@ public class ProjetoService implements IProjetoUseCase{
     }
 
     @Override
+    @Transactional
     public void deletarProjeto(Long id) {
         Projeto projeto = buscarPorIdDoPreojeto(id);
+
+        subTarefaRepository.deleteByProjetoId(id);
+        tarefaRepository.deleteByProjetoId(id);
+        categoriaRepository.deleteByProjetoId(id);
+        statusRepository.deleteByProjetoId(id);
+
         repository.delete(projeto);
     }
 }

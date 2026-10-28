@@ -38,7 +38,7 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
-    @Column(nullable = false)
+    @Column(name = "data_final")          // remova nullable = false
     private LocalDate data_final;
 
     private Integer posicao;
